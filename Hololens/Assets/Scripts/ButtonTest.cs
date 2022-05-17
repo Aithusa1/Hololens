@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class ButtonTest : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject cube;
+    public Transform spawnPoint;
 
-    // Update is called once per frame
-    void Update()
+    public void OnButtonPressed()
     {
-        
+        Instantiate(cube, spawnPoint.position, spawnPoint.rotation);
     }
 }
