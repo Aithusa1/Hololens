@@ -2,7 +2,13 @@ fileFormatVersion: 2
 guid: 6c3e517824836eb42ac25e005069eac8
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: -6674008700683352508
+    second: Armature|Algiment doos
+  - first:
+      74: -2571196583819692219
+    second: 'Armature|Algiment knop '
   externalObjects: {}
   materials:
     materialImportMode: 2
