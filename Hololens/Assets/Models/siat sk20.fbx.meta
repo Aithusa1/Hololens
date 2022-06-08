@@ -9,6 +9,12 @@ ModelImporter:
   - first:
       74: -2571196583819692219
     second: 'Armature|Algiment knop '
+  - first:
+      74: -7968464167128880336
+    second: Armature|Height
+  - first:
+      74: 6898416756004155994
+    second: Armature|PowerSwitch
   externalObjects: {}
   materials:
     materialImportMode: 2
