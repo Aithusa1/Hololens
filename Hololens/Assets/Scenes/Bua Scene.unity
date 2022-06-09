@@ -354,10 +354,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: siat sk20
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: anim
-      value: 
-      objectReference: {fileID: 4559587374800600852}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f829b921096ece48a50c5cee4b9e2a6, type: 3}
 --- !u!1 &4559587374800600851 stripped
@@ -382,6 +378,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac91055022832dd43af0a36229be1632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  test: 0
-  a: 0
+  alingementBalk: 0
+  heightHead: 0
+  powerSwitch: 0
+  alingementBalkKnop: 0
   anim: {fileID: 4559587374800600852}
