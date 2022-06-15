@@ -15,6 +15,15 @@ ModelImporter:
   - first:
       74: 6898416756004155994
     second: Armature|PowerSwitch
+  - first:
+      74: -6261882104045268498
+    second: Armature|Doos door machine
+  - first:
+      74: 5087024259253565775
+    second: Armature|tape wheel back
+  - first:
+      74: -2472792016549786993
+    second: Armature|tape wheel front
   externalObjects: {}
   materials:
     materialImportMode: 2
