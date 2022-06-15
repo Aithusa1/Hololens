@@ -29,16 +29,20 @@ public class SiatSK20 : MonoBehaviour
 
     public void PowerSwitchButton()
     {
-
+        MachineAnimations.SetFloat("Power Switch", 1f);
     }
 
     public void Alignment()
     {
-       
+        
+
+        MachineAnimations.SetFloat("Alignment Balk", 1);
     }
 
     public void SetMachineheadHight()
     {
+      
 
+        MachineAnimations.SetFloat("Height Head", 1);
     }
 }
