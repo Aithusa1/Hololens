@@ -17,10 +17,10 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
 
         public bool powerSwitch;
 
-
         public GameObject headSlider;
         public GameObject alignmentSlider;
-      
+
+        public GameObject handCranck;
 
         private void Start()
         {
@@ -34,29 +34,54 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
             if (pressed)
             {
                 Debug.Log("Pressed");
-                var rot = Quaternion.Euler(-90, +45, 0);
-                gameObject.transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 1);
+                var rot = Quaternion.Euler(-90, handCranck.transform.rotation.y + 90, 0 );
+                handCranck.transform.rotation = Quaternion.Lerp(handCranck.transform.rotation, rot, Time.deltaTime * 1);
+                
+                StartCoroutine(WaitTime());
                 //gameObject.transform.rotation = Quaternion.Euler(-90, 120, 0);
             }
 
             headHeight = headSlider.GetComponent<StepSlider>().SliderValue;
             alignment = alignmentSlider.GetComponent<StepSlider>().SliderValue;
            
-         
             MachineAnimations.SetFloat("Heigth Head", headHeight);
             MachineAnimations.SetFloat("Alginement Balk", alignment);
         }
 
-
+        public IEnumerator WaitTime()
+        {
+            yield return new WaitForSeconds(3f);
+            pressed = false;
+        }
 
         public void HandCranck()
         {
-            pressed = true;
+            if (pressed)
+            {
+                pressed = false;
+            }
+            else
+            {
+                pressed = true;
+
+            }
+
+
         }
 
         public void PowerSwitchButton()
         {
-            MachineAnimations.SetFloat("Power Switch", 1f);
+            if (!powerSwitch)
+            {
+                MachineAnimations.SetFloat("Power Switch", 1f);
+                powerSwitch = true;
+            }
+
+            if (powerSwitch)
+            {
+                MachineAnimations.SetFloat("Power Switch", 0f);
+                powerSwitch = false;
+            }
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -66,7 +91,7 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
                 Debug.Log("SmallBox Yes");
                 if (headHeight == 0f && alignment == 0f)
                 {
-
+                    // animatie doos door machine
                 }
             }
 
@@ -75,7 +100,7 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
                 Debug.Log("MediumBox Yes");
                 if (headHeight == 0.5f && alignment == 0.5f)
                 {
-
+                    // animatie doos door machine
                 }
             }
 
@@ -84,7 +109,7 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
                 Debug.Log("LargeBox Yes");
                 if (headHeight == 1f && alignment == 1f)
                 {
-
+                    // animatie doos door machine
                 }
             }
         }

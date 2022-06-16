@@ -259,6 +259,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   sliderStepDivisions: 8
+  sliderStepVal: 0.01
 --- !u!114 &161690568375348218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -900,7 +901,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1080610364818002882}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -965,6 +966,7 @@ MonoBehaviour:
   powerSwitch: 0
   headSlider: {fileID: 7447150372746630014}
   alignmentSlider: {fileID: 161690568375348213}
+  handCranck: {fileID: 1855923738337046356}
 --- !u!114 &161690569494285331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2129,6 +2131,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   sliderStepDivisions: 8
+  sliderStepVal: 0.01
 --- !u!114 &7447150372746630001
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2115,11 +2115,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 411175336980859256, guid: 87a1f2524714e9d439a9d3591a93658d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.36
       objectReference: {fileID: 0}
     - target: {fileID: 411175336980859256, guid: 87a1f2524714e9d439a9d3591a93658d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.089
       objectReference: {fileID: 0}
     - target: {fileID: 411175336980859256, guid: 87a1f2524714e9d439a9d3591a93658d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2152,10 +2152,6 @@ PrefabInstance:
     - target: {fileID: 1080610364818002882, guid: 87a1f2524714e9d439a9d3591a93658d, type: 3}
       propertyPath: m_Name
       value: siat sk20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1080610364818002882, guid: 87a1f2524714e9d439a9d3591a93658d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87a1f2524714e9d439a9d3591a93658d, type: 3}
