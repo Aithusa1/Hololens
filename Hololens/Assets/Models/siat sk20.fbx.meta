@@ -10,20 +10,26 @@ ModelImporter:
       74: -2571196583819692219
     second: 'Armature|Algiment knop '
   - first:
+      74: -6261882104045268498
+    second: Armature|Doos door machine
+  - first:
       74: -7968464167128880336
     second: Armature|Height
   - first:
       74: 6898416756004155994
     second: Armature|PowerSwitch
   - first:
-      74: -6261882104045268498
-    second: Armature|Doos door machine
-  - first:
       74: 5087024259253565775
     second: Armature|tape wheel back
   - first:
       74: -2472792016549786993
     second: Armature|tape wheel front
+  - first:
+      74: -8672117707008609729
+    second: Armature|up tape wheel back
+  - first:
+      74: 8356910425562611022
+    second: Armature|up tape wheel front
   externalObjects: {}
   materials:
     materialImportMode: 2
