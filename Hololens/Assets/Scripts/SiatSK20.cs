@@ -16,11 +16,13 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
         public float alignmentKnopTurn;
 
         public bool powerSwitch;
-
+      
         public GameObject headSlider;
         public GameObject alignmentSlider;
 
         public GameObject handCranck;
+
+        public GameObject boneAnim;
 
         private void Start()
         {
@@ -65,8 +67,6 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
                 pressed = true;
 
             }
-
-
         }
 
         public void PowerSwitchButton()
@@ -84,22 +84,46 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
             }
         }
 
+        public IEnumerator WaitForBox()
+        {
+            yield return new WaitForSeconds(1f);
+
+        }
+
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.transform.CompareTag("SmallBox") && powerSwitch)
+            if (collision.transform.CompareTag("SmallBox") /*&& powerSwitch*/)
             {
                 Debug.Log("SmallBox Yes");
-                if (headHeight == 0f && alignment == 0f)
+
+                if (headHeight == 0.5f && alignment == 0.5f)
                 {
-                    // animatie doos door machine
+                collision.gameObject.transform.SetParent(boneAnim.transform);
+                MachineAnimations.SetTrigger("Tape Wheel Front Down");
+                MachineAnimations.SetTrigger("Tape Wheel Back Down");
+               
+                MachineAnimations.SetTrigger("Doos door machine");
+                StartCoroutine(WaitForBox());
+
+                //MachineAnimations.SetTrigger("Tape Wheel Front Up");
+                //MachineAnimations.SetTrigger("Tape Wheel Back Up");
+                // animatie doos door machine
                 }
             }
 
             if (collision.transform.CompareTag("MediumBox") && powerSwitch)
             {
                 Debug.Log("MediumBox Yes");
-                if (headHeight == 0.5f && alignment == 0.5f)
+                if (headHeight == 0.75f && alignment == 0.75f)
                 {
+                    collision.gameObject.transform.SetParent(boneAnim.transform);
+                    MachineAnimations.SetTrigger("Doos door machine");
+
+                    MachineAnimations.SetTrigger("Tape Wheel Front Down");
+                    MachineAnimations.SetTrigger("Tape Wheel Back Down");
+                    StartCoroutine(WaitForBox());
+                    MachineAnimations.SetTrigger("Tape Wheel Front Up");
+                    MachineAnimations.SetTrigger("Tape Wheel Back Up");
                     // animatie doos door machine
                 }
             }
@@ -109,6 +133,14 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
                 Debug.Log("LargeBox Yes");
                 if (headHeight == 1f && alignment == 1f)
                 {
+                    collision.gameObject.transform.SetParent(boneAnim.transform);
+                    MachineAnimations.SetTrigger("Doos door machine");
+
+                    MachineAnimations.SetTrigger("Tape Wheel Front Down");
+                    MachineAnimations.SetTrigger("Tape Wheel Back Down");
+                    StartCoroutine(WaitForBox());
+                    MachineAnimations.SetTrigger("Tape Wheel Front Up");
+                    MachineAnimations.SetTrigger("Tape Wheel Back Up");
                     // animatie doos door machine
                 }
             }
