@@ -57,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: d13e9e1a1521fcc4dbc5de5e225c0fab, type: 2}
     - target: {fileID: 919132149155446097, guid: 65d265b8ef29ded4a825e04a05fabf02, type: 3}
       propertyPath: m_Name
-      value: Box without Rigidbody
+      value: Box without Rigidbody Variant
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 65d265b8ef29ded4a825e04a05fabf02, type: 3}
       propertyPath: m_TagString
@@ -75,19 +75,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 65d265b8ef29ded4a825e04a05fabf02, type: 3}
   m_PrefabInstance: {fileID: 7699098615228020996}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &2899697935271265649
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7357149750121137237}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.15, y: 0.15, z: 0.15}
-  m_Center: {x: 0, y: 0, z: 0.07}
 --- !u!114 &2203209771037002425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,3 +146,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTetherWhenManipulating: 0
   IsBoundsHandles: 0
+--- !u!65 &3016569337041209967
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7357149750121137237}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.17000002, y: 0.15, z: 0.17}
+  m_Center: {x: 0.000000029802322, y: 0.075, z: 0}

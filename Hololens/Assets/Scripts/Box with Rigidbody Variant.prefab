@@ -7,22 +7,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2899697935271265649, guid: a848ff90c9c7a074393fbb070b224284, type: 3}
-      propertyPath: m_Size.x
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2899697935271265649, guid: a848ff90c9c7a074393fbb070b224284, type: 3}
-      propertyPath: m_Size.y
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2899697935271265649, guid: a848ff90c9c7a074393fbb070b224284, type: 3}
-      propertyPath: m_Size.z
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2899697935271265649, guid: a848ff90c9c7a074393fbb070b224284, type: 3}
-      propertyPath: m_Center.z
-      value: 0.07
-      objectReference: {fileID: 0}
     - target: {fileID: 4010555886218822332, guid: a848ff90c9c7a074393fbb070b224284, type: 3}
       propertyPath: hostTransform
       value: 
@@ -37,7 +21,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7357149750121137237, guid: a848ff90c9c7a074393fbb070b224284, type: 3}
       propertyPath: m_Name
-      value: Box with Rigidbody
+      value: Box with Rigidbody Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7357149750121137237, guid: a848ff90c9c7a074393fbb070b224284, type: 3}
       propertyPath: m_TagString
