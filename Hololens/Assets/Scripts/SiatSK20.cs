@@ -27,10 +27,15 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
 
         public GameObject machineInfoOne, machineInfoTwo, machineInfoThree, machineInfoFour, machineInfoFive;
 
+        private Transform empty;
+        public Transform boxPoint;
+
         private void Start()
         {
             headSlider.GetComponent<StepSlider>().SliderValue = 0;
             alignmentSlider.GetComponent<StepSlider>().SliderValue = 0;
+
+         
 
             machineInfoOne.SetActive(true);
             machineInfoTwo.SetActive(false);
@@ -38,27 +43,27 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
             machineInfoFour.SetActive(false);
             machineInfoFive.SetActive(false);
 
+          
         }
 
         void Update()
         {
-            if (pressed)
-            {
-                Debug.Log("Pressed");
-                var rot = Quaternion.Euler(-90, handCranck.transform.rotation.y + 90, 0 );
-                handCranck.transform.rotation = Quaternion.Lerp(handCranck.transform.rotation, rot, Time.deltaTime * 1);
-                
-                StartCoroutine(WaitTime());
-                //gameObject.transform.rotation = Quaternion.Euler(-90, 120, 0);
-            }
-
-
-
             headHeight = headSlider.GetComponent<StepSlider>().SliderValue;
             alignment = alignmentSlider.GetComponent<StepSlider>().SliderValue;
-           
+
             MachineAnimations.SetFloat("Heigth Head", headHeight);
             MachineAnimations.SetFloat("Alginement Balk", alignment);
+
+            //if (pressed)
+            //{
+            //    Debug.Log("Pressed");
+            //    var rot = Quaternion.Euler(-90, handCranck.transform.rotation.y + 90, 0 );
+            //    handCranck.transform.rotation = Quaternion.Lerp(handCranck.transform.rotation, rot, Time.deltaTime * 1);
+
+            //    StartCoroutine(WaitTime());
+            //    //gameObject.transform.rotation = Quaternion.Euler(-90, 120, 0);
+            //}
+
         }
 
         public IEnumerator WaitTime()
@@ -69,16 +74,17 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
 
         public void HandCranck()
         {
-            if (pressed)
-            {
-                pressed = false;
-            }
-            else
-            {
-                pressed = true;
+            //if (pressed)
+            //{
+            //    pressed = false;
+            //}
+            //else
+            //{
+            //    pressed = true;
 
-            }
+            //}
         }
+
 
         public void PowerSwitchButton()
         {
@@ -87,80 +93,134 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
                 MachineAnimations.SetFloat("Power Switch", 1f);
                 powerSwitch = true;
             }
-
-            if (powerSwitch)
+            else if (powerSwitch)
             {
                 MachineAnimations.SetFloat("Power Switch", 0f);
                 powerSwitch = false;
             }
         }
 
+        public void StepTwoActive()
+        {
+            machineInfoOne.SetActive(false);
+            machineInfoTwo.SetActive(true);
+        }
+
+        public void StepThreeActive()
+        {
+            machineInfoTwo.SetActive(false);
+            machineInfoThree.SetActive(true);
+        }
+
+        public void StepFourActive()
+        {
+            machineInfoThree.SetActive(false);
+            machineInfoFour.SetActive(true);
+        }
+
+        public void StepFiveActive()
+        {
+            machineInfoFour.SetActive(false);
+            machineInfoFive.SetActive(true);
+        }
+
+      
         public IEnumerator WaitForBox()
         {
-            yield return new WaitForSeconds(1f);
+            MachineAnimations.SetTrigger("Doos door machine");
+
+            MachineAnimations.SetTrigger("Tape Wheel Front Down");
+            MachineAnimations.SetTrigger("Tape Wheel Back Down");
+
+            yield return new WaitForSeconds(1.45f);
+            empty.parent = null;
+            empty.position = boxPoint.position;
+            yield return new WaitForSeconds(1.45f);
+            // tape doos value
+
+
             smallBoxTrigger = false;
             mediumBoxTrigger = false;
             largeBoxTrigger = false;
 
+            MachineAnimations.ResetTrigger("Doos door machine");
+            MachineAnimations.ResetTrigger("Tape Wheel Front Down");
+            MachineAnimations.ResetTrigger("Tape Wheel Back Down");
+
+          
         }
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.transform.CompareTag("SmallBox")   /* powerSwitch */)
+
+            empty = collision.transform;
+
+            if (collision.transform.CompareTag("SmallBox"))
             {
                 Debug.Log("SmallBox Yes");
-
+                StepThreeActive();
                 if (headHeight == 0.5f && alignment == 0.5f && !smallBoxTrigger)
                 {
-                    smallBoxTrigger = true;
-                    collision.gameObject.transform.SetParent(boneAnim.transform);
-                    MachineAnimations.SetTrigger("Tape Wheel Front Down");
-                    MachineAnimations.SetTrigger("Tape Wheel Back Down");
+                    StepFourActive();
+                    if (powerSwitch)
+                    {
+                       
+                        smallBoxTrigger = true;
+                        collision.gameObject.transform.SetParent(boneAnim.transform);
+                       
+                        StartCoroutine(WaitForBox());
 
-                    MachineAnimations.SetTrigger("Doos door machine");
-                    StartCoroutine(WaitForBox());
 
-                    //MachineAnimations.SetTrigger("Tape Wheel Front Up");
-                    //MachineAnimations.SetTrigger("Tape Wheel Back Up");
-                    // animatie doos door machine
+                       
+                        
+                    }
+
                 }
             }
 
-            if (collision.transform.CompareTag("MediumBox")  /* powerSwitch */)
+            if (collision.transform.CompareTag("MediumBox")  )
             {
                 Debug.Log("MediumBox Yes");
+                StepThreeActive();
                 if (headHeight == 0.75f && alignment == 0.75f && !mediumBoxTrigger)
                 {
-                    mediumBoxTrigger = true;
-                    collision.gameObject.transform.SetParent(boneAnim.transform);
-                    MachineAnimations.SetTrigger("Doos door machine");
+                    StepFourActive();
+                    if (powerSwitch)
+                    {
+                        
+                        mediumBoxTrigger = true;
+                        collision.gameObject.transform.SetParent(boneAnim.transform);
+                    
 
-                    MachineAnimations.SetTrigger("Tape Wheel Front Down");
-                    MachineAnimations.SetTrigger("Tape Wheel Back Down");
-                    StartCoroutine(WaitForBox());
+                        StartCoroutine(WaitForBox());
 
-                    //MachineAnimations.SetTrigger("Tape Wheel Front Up");
-                    //MachineAnimations.SetTrigger("Tape Wheel Back Up");
-                    // animatie doos door machine
+
+                       
+                    }
+
                 }
             }
 
-            if (collision.transform.CompareTag("LargeBox")  /* powerSwitch */)
+            if (collision.transform.CompareTag("LargeBox")  )
             {
                 Debug.Log("LargeBox Yes");
-                if (headHeight == 1f && alignment == 1f && !largeBoxTrigger)
+                StepThreeActive();
+                if (headHeight == 0f && alignment == 0f && !largeBoxTrigger)
                 {
-                    largeBoxTrigger = true;
-                    collision.gameObject.transform.SetParent(boneAnim.transform);
-                    MachineAnimations.SetTrigger("Doos door machine");
+                    StepFourActive();
+                    if (powerSwitch)
+                    {
+                        
+                        largeBoxTrigger = true;
+                        collision.gameObject.transform.SetParent(boneAnim.transform);
+                      
+                        StartCoroutine(WaitForBox());
 
-                    MachineAnimations.SetTrigger("Tape Wheel Front Down");
-                    MachineAnimations.SetTrigger("Tape Wheel Back Down");
-                    StartCoroutine(WaitForBox());
+                     
 
-                    //MachineAnimations.SetTrigger("Tape Wheel Front Up");
-                    //MachineAnimations.SetTrigger("Tape Wheel Back Up");
-                    // animatie doos door machine
+                    }
+                    
+
                 }
             }
         }
