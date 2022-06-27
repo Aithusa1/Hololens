@@ -14,7 +14,7 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
         public float alignment;
         public float alignmentKnopTurn;
 
-       // public bool powerSwitch = false;
+        public bool powerSwitch = false;
         public bool pressed = false;
         public bool smallBoxTrigger = false;
         public bool mediumBoxTrigger = false;
@@ -25,11 +25,19 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
         public GameObject handCranck;
         public GameObject boneAnim;
 
+        public GameObject machineInfoOne, machineInfoTwo, machineInfoThree, machineInfoFour, machineInfoFive;
+
         private void Start()
         {
             headSlider.GetComponent<StepSlider>().SliderValue = 0;
             alignmentSlider.GetComponent<StepSlider>().SliderValue = 0;
-            
+
+            machineInfoOne.SetActive(true);
+            machineInfoTwo.SetActive(false);
+            machineInfoThree.SetActive(false);
+            machineInfoFour.SetActive(false);
+            machineInfoFive.SetActive(false);
+
         }
 
         void Update()
@@ -43,6 +51,8 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
                 StartCoroutine(WaitTime());
                 //gameObject.transform.rotation = Quaternion.Euler(-90, 120, 0);
             }
+
+
 
             headHeight = headSlider.GetComponent<StepSlider>().SliderValue;
             alignment = alignmentSlider.GetComponent<StepSlider>().SliderValue;
@@ -70,20 +80,20 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
             }
         }
 
-        //public void PowerSwitchButton()
-        //{
-        //    if (!powerSwitch)
-        //    {
-        //        MachineAnimations.SetFloat("Power Switch", 1f);
-        //        powerSwitch = true;
-        //    }
+        public void PowerSwitchButton()
+        {
+            if (!powerSwitch)
+            {
+                MachineAnimations.SetFloat("Power Switch", 1f);
+                powerSwitch = true;
+            }
 
-        //    if (powerSwitch)
-        //    {
-        //        MachineAnimations.SetFloat("Power Switch", 0f);
-        //        powerSwitch = false;
-        //    }
-        //}
+            if (powerSwitch)
+            {
+                MachineAnimations.SetFloat("Power Switch", 0f);
+                powerSwitch = false;
+            }
+        }
 
         public IEnumerator WaitForBox()
         {
