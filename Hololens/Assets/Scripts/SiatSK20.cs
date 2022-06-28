@@ -25,11 +25,16 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
         public GameObject handCranck;
         public GameObject boneAnim;
 
-        public GameObject machineInfoOne, machineInfoTwo, machineInfoThree, machineInfoFour, machineInfoFive;
+        public GameObject machineInfoOne;
+        public GameObject machineInfoTwo;
+        public GameObject machineInfoThree;
+        public GameObject machineInfoFour;
+        public GameObject machineInfoFive;
 
-        private Transform empty;
         public Transform boxPoint;
 
+        private Transform empty;
+        private Renderer rend;
 
         private void Start()
         {
@@ -126,10 +131,8 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
 
         public IEnumerator WaitForBox()
         {
-            Renderer rend;
 
             MachineAnimations.SetTrigger("Doos door machine");
-
             MachineAnimations.SetTrigger("Tape Wheel Front Down");
             MachineAnimations.SetTrigger("Tape Wheel Back Down");
 
@@ -137,13 +140,12 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
 
             empty.parent = null;
             empty.position = boxPoint.position;
+
             rend = empty.transform.GetComponent<Renderer>();
             rend.material.SetFloat("swap", 1);
 
             yield return new WaitForSeconds(1.45f);
-            // tape doos value
-
-
+            
             smallBoxTrigger = false;
             mediumBoxTrigger = false;
             largeBoxTrigger = false;
@@ -159,10 +161,8 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
         
 
         private void OnCollisionEnter(Collision collision)
-        {
-            
+        {          
             empty = collision.transform;
-
             if (collision.transform.CompareTag("SmallBox"))
             {
                 Debug.Log("SmallBox Yes");
@@ -175,10 +175,6 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
                         smallBoxTrigger = true;
                         collision.gameObject.transform.SetParent(boneAnim.transform);             
                         StartCoroutine(WaitForBox());
-
-
-                       
-                        // collision.transform.GetComponent<Material>().SetFloat("swap", 1);
 
                     }
 
@@ -197,9 +193,6 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
                         mediumBoxTrigger = true;
                         collision.gameObject.transform.SetParent(boneAnim.transform);
                         StartCoroutine(WaitForBox());
-                        
-
-                       // collision.transform.GetComponent<Material>().SetFloat("swap", 1);
                     }
 
                 }
@@ -218,12 +211,7 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
                         collision.gameObject.transform.SetParent(boneAnim.transform);           
                         StartCoroutine(WaitForBox());
 
-                       
-                        //collision.transform.GetComponent<Material>().SetFloat("swap", 1);
-                       
                     }
-                    
-
                 }
             }
         }
