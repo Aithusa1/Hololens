@@ -2267,7 +2267,7 @@
     },
     "m_Name": "Texture Swap",
     "m_DefaultReferenceName": "Vector1_ca019dd974f0412390525ab8419f9cde",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "swap",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,

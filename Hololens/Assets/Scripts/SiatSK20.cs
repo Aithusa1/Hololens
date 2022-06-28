@@ -170,7 +170,8 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
                         smallBoxTrigger = true;
                         collision.gameObject.transform.SetParent(boneAnim.transform);             
                         StartCoroutine(WaitForBox());
-                        smallBoxShader = empty.transform.GetComponent<Material>();
+
+                        smallBoxShader = collision.transform.GetComponent<Material>();
                         smallBoxShader.SetFloat("Swap", 1);
                         
                     }
@@ -190,7 +191,7 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
                         mediumBoxTrigger = true;
                         collision.gameObject.transform.SetParent(boneAnim.transform);
                         StartCoroutine(WaitForBox());
-                        bigBoxShader = empty.transform.GetComponent<Material>();
+                        bigBoxShader = collision.transform.GetComponent<Material>();
                         bigBoxShader.SetFloat("Swap", 1);
                     }
 
@@ -210,7 +211,7 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
                         collision.gameObject.transform.SetParent(boneAnim.transform);           
                         StartCoroutine(WaitForBox());
 
-                        bigBoxShader = empty.transform.GetComponent<Material>();
+                        bigBoxShader = collision.transform.GetComponent<Material>();
                         bigBoxShader.SetFloat("Swap", 1);
                     }
                     
