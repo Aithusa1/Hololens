@@ -55,17 +55,6 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
 
             MachineAnimations.SetFloat("Heigth Head", headHeight);
             MachineAnimations.SetFloat("Alginement Balk", alignment);
-
-            //if (pressed)
-            //{
-            //    Debug.Log("Pressed");
-            //    var rot = Quaternion.Euler(-90, handCranck.transform.rotation.y + 90, 0 );
-            //    handCranck.transform.rotation = Quaternion.Lerp(handCranck.transform.rotation, rot, Time.deltaTime * 1);
-
-            //    StartCoroutine(WaitTime());
-            //    //gameObject.transform.rotation = Quaternion.Euler(-90, 120, 0);
-            //}
-
         }
 
         public IEnumerator WaitTime()
@@ -73,21 +62,6 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
             yield return new WaitForSeconds(3f);
             pressed = false;
         }
-
-        public void HandCranck()
-        {
-            //if (pressed)
-            //{
-            //    pressed = false;
-            //}
-            //else
-            //{
-            //    pressed = true;
-
-            //}
-        }
-
-
 
         public void PowerSwitchButton()
         {
@@ -153,9 +127,6 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
             MachineAnimations.ResetTrigger("Doos door machine");
             MachineAnimations.ResetTrigger("Tape Wheel Front Down");
             MachineAnimations.ResetTrigger("Tape Wheel Back Down");
-
-          
-
         }
 
         
@@ -175,9 +146,7 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
                         smallBoxTrigger = true;
                         collision.gameObject.transform.SetParent(boneAnim.transform);             
                         StartCoroutine(WaitForBox());
-
                     }
-
                 }
             }
 
@@ -194,7 +163,6 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
                         collision.gameObject.transform.SetParent(boneAnim.transform);
                         StartCoroutine(WaitForBox());
                     }
-
                 }
             }
 
