@@ -31,6 +31,8 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
         public GameObject machineInfoFour;
         public GameObject machineInfoFive;
 
+        public bool small = false, medium = false, large = false;
+
         public Transform boxPoint;
 
         private Transform empty;
@@ -48,6 +50,31 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
             machineInfoFive.SetActive(false);
         }
 
+        private void OnCollisionEnter(Collision collision)
+        {
+            empty = collision.transform;
+
+            if (empty.transform.CompareTag("SmallBox"))
+            {
+
+                small = true;
+
+            }
+
+            if (empty.transform.CompareTag("MediumBox"))
+            {
+                medium = true;
+            }
+
+            if (empty.transform.CompareTag("LargeBox"))
+            {
+                large = true;
+            }
+        }
+
+
+
+
         void Update()
         {
             headHeight = headSlider.GetComponent<StepSlider>().SliderValue;
@@ -55,8 +82,73 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
 
             MachineAnimations.SetFloat("Heigth Head", headHeight);
             MachineAnimations.SetFloat("Alginement Balk", alignment);
-        }
 
+            if( alignment != 0)
+            {
+                StepFourActive();
+            }
+            if(headHeight != 0)
+            {
+                StepFiveActive();
+            }
+
+
+
+
+            if (small)
+            {
+                Debug.Log("SmallBox Yes");
+                StepThreeActive();
+                if (headHeight == 0.5f && alignment == 0.5f && !smallBoxTrigger)
+                {
+
+                    if (powerSwitch)
+                    {
+                        StartCoroutine(WaitForBox());
+                        smallBoxTrigger = true;
+                        empty.gameObject.transform.SetParent(boneAnim.transform);
+
+                    }
+                }
+            }
+
+            
+
+            if (medium)
+            {
+                Debug.Log("MediumBox Yes");
+                StepThreeActive();
+                if (headHeight == 0.25f && alignment == 0.25 && !mediumBoxTrigger)
+                {
+
+                    if (powerSwitch)
+                    {
+                        StartCoroutine(WaitForBox());
+                        mediumBoxTrigger = true;
+                        empty.gameObject.transform.SetParent(boneAnim.transform);
+
+                    }
+                }
+            }
+
+            if (large)
+            {
+                Debug.Log("LargeBox Yes");
+                StepThreeActive();
+                if (headHeight == 0f && alignment == 0f && !largeBoxTrigger)
+                {
+                    if (powerSwitch)
+                    {
+                        StartCoroutine(WaitForBox());
+                        largeBoxTrigger = true;
+                        empty.gameObject.transform.SetParent(boneAnim.transform);
+
+
+                    }
+                }
+            }
+        }
+    
         public IEnumerator WaitTime()
         {
             yield return new WaitForSeconds(3f);
@@ -124,64 +216,21 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
             mediumBoxTrigger = false;
             largeBoxTrigger = false;
 
+                small = false;
+            medium = false;
+            large = false;
+
             MachineAnimations.ResetTrigger("Doos door machine");
             MachineAnimations.ResetTrigger("Tape Wheel Front Down");
             MachineAnimations.ResetTrigger("Tape Wheel Back Down");
-        }
 
         
-
-        private void OnCollisionEnter(Collision collision)
-        {          
-            empty = collision.transform;
-            if (collision.transform.CompareTag("SmallBox"))
-            {
-                Debug.Log("SmallBox Yes");
-                StepThreeActive();
-                if (headHeight == 0.5f && alignment == 0.5f && !smallBoxTrigger)
-                {
-                    StepFourActive();
-                    if (powerSwitch)
-                    {
-                        smallBoxTrigger = true;
-                        collision.gameObject.transform.SetParent(boneAnim.transform);             
-                        StartCoroutine(WaitForBox());
-                    }
-                }
-            }
-
-            if (collision.transform.CompareTag("MediumBox")  )
-            {
-                Debug.Log("MediumBox Yes");
-                StepThreeActive();
-                if (headHeight == 0.75f && alignment == 0.75f && !mediumBoxTrigger)
-                {
-                    StepFourActive();
-                    if (powerSwitch)
-                    {                       
-                        mediumBoxTrigger = true;
-                        collision.gameObject.transform.SetParent(boneAnim.transform);
-                        StartCoroutine(WaitForBox());
-                    }
-                }
-            }
-
-            if (collision.transform.CompareTag("LargeBox")  )
-            {
-                Debug.Log("LargeBox Yes");
-                StepThreeActive();
-                if (headHeight == 0f && alignment == 0f && !largeBoxTrigger)
-                {
-                    StepFourActive();
-                    if (powerSwitch)
-                    { 
-                        largeBoxTrigger = true;
-                        collision.gameObject.transform.SetParent(boneAnim.transform);           
-                        StartCoroutine(WaitForBox());
-
-                    }
-                }
-            }
         }
+
+
+
+       
+
+
     }
 }
